@@ -2,14 +2,14 @@ package com.tia.main.vo;
 
 import java.awt.List;
 
-public class UndefinedObject {
+public class LoveObject {
 	private double value;
 	
-	public UndefinedObject() {
+	public LoveObject() {
 		
 	}
 	
-	public UndefinedObject(double value) {
+	public LoveObject(double value) {
 		this.value = value; 
 	}
 	
