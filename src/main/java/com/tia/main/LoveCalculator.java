@@ -11,7 +11,7 @@ public class LoveCalculator {
 	private LoveObjectList uol;
 	private static Random rand = new Random(System.currentTimeMillis());	
 	
-	public static void updateRandomSeed() {
+	private static void updateRandomSeed() {
 		rand.setSeed(System.currentTimeMillis());
 	}
 	
@@ -62,7 +62,7 @@ public class LoveCalculator {
 	}
 	
 	
-	public static LoveObject UndefinedOperate(LoveObject uo1, LoveObject uo2)
+	private static LoveObject UndefinedOperate(LoveObject uo1, LoveObject uo2)
 	{
 		LoveObject result = new LoveObject();		
 		result.setValue(randCalculate(uo1.getValue(), uo2.getValue()));

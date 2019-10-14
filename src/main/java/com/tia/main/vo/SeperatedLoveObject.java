@@ -16,4 +16,14 @@ public class SeperatedLoveObject {
 	public void setSeperated(ArrayList<LoveObject> seperated) {
 		this.seperated = seperated;
 	}
+	
+	public void print() {
+		/*
+		 * for (int i=0;i<seperated.size() ;i++) System.out.print();
+		 */		
+		
+	}
+	
+	
+	
 }
