@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.tia.main.vo.LoveObject;
-import com.tia.main.vo.LoveObjectList;
 import com.tia.main.vo.SeperatedLoveObject;
 
 public class LoveCalculator {
-	private LoveObjectList uol;
 	private static Random rand = new Random(System.currentTimeMillis());	
 	
 	private static void updateRandomSeed() {
