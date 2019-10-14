@@ -41,17 +41,24 @@ public class LoveCalculator {
 		return result;
 	}
 	
-	public static LoveObject Mix(SeperatedLoveObject uso1, SeperatedLoveObject uso2) {
+	public static SeperatedLoveObject Mix(SeperatedLoveObject uso1, SeperatedLoveObject uso2) {
 		ArrayList<LoveObject> usoOneArr = uso1.getSeperated();
 		ArrayList<LoveObject> usoTwoArr = uso2.getSeperated();
+		SeperatedLoveObject result = new SeperatedLoveObject();
+		ArrayList<LoveObject> resultArr = result.getSeperated();
 		
-		int size = usoOneArr.size() > usoTwoArr.size() ? usoOneArr.size() : usoTwoArr.size();
+		int smallsize = usoOneArr.size() > usoTwoArr.size() ? usoTwoArr.size() : usoOneArr.size();
+		ArrayList<LoveObject> largeArr = usoOneArr.size() > usoTwoArr.size() ? usoOneArr : usoTwoArr;
+				
+		for (int i=0;i<smallsize;i++) {
+			resultArr.add(UndefinedOperate(usoOneArr.get(i), usoTwoArr.get(i)));
+		}
 		
-		for (int i=0;i<size;i++) {
-			
+		for (int i=smallsize;i<largeArr.size();i++) {
+			resultArr.add(largeArr.get(i));
 		}
 				
-		return null;
+		return result;
 	}
 	
 	
