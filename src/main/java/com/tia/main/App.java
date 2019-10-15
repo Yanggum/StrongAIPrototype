@@ -14,14 +14,14 @@ public class App
     public static void main( String[] args )
     {
     	// Input 정의
-    	String[] test = new String[] {"가"};    	
-    	String test2 = new String("가힣");
-    	byte[] test3 = test2.getBytes(StandardCharsets.UTF_8);
-    	String test4 = "";
-		String result = ".,?!'\"";		
-
-    	
-    	System.out.println(result.length());
+		/*
+		 * String[] test = new String[] {"가"}; String test2 = new String("가힣"); byte[]
+		 * test3 = test2.getBytes(StandardCharsets.UTF_8); String test4 = ""; String
+		 * result = ".,?!'\"";
+		 * 
+		 * 
+		 * System.out.println(result.length());
+		 */
     	
     	
 		/*
@@ -49,7 +49,8 @@ public class App
 		 * if (input.equals("q")) break; else { System.out.println(input); }
 		 * 
 		 * }
-		 */    }
+		 */
+	}
     
     public static int testRecusrsion(int i) {
     	
