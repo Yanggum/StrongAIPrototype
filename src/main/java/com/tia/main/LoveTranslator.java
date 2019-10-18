@@ -18,7 +18,7 @@ public class LoveTranslator {
 	
 	
 	private static String getHangulSet() {
-		String result = "";    	
+		String result = " ";    	
     	
     	for (int i='가';i<='힣' ;i++) {
     		result += (char)i;

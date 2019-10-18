@@ -7,13 +7,35 @@ import com.tia.main.vo.LoveObject;
 import com.tia.main.vo.SeperatedLoveObject;
 
 public class LoveCalculator {
+	private static final int MAX_COUNT_SIZE = 100;
 	private static Random rand = new Random(System.currentTimeMillis());	
 	
 	private static void updateRandomSeed() {
 		rand.setSeed(System.currentTimeMillis());
 	}
 	
-	public static SeperatedLoveObject Seperate(LoveObject uo, int count) {		
+	private static LoveObject generate() {
+		LoveObject lo = new LoveObject();
+		lo.setValue(rand.nextDouble());
+		
+		return lo;		
+	}
+	
+	public static double run() {
+		LoveObject lo = LoveCalculator.generate();
+		
+		double result = 0;
+		
+		while (result == 0) {		
+			result = Merge(Mix(Seperate(lo))).getValue()/MAX_COUNT_SIZE;
+		}		
+		
+		return result;
+		
+	}
+	
+	private static SeperatedLoveObject Seperate(LoveObject uo) {		
+		int count = getSepCount();
 		SeperatedLoveObject result = new SeperatedLoveObject();		
 		
 		for (int i=0;i<count;i++) {
@@ -25,7 +47,7 @@ public class LoveCalculator {
 		return result;
 	}	
 	
-	public static LoveObject Merge(SeperatedLoveObject uso) {
+	private static LoveObject Merge(SeperatedLoveObject uso) {
 		LoveObject result = new LoveObject();
 		ArrayList<LoveObject> usos = uso.getSeperated();
 		double sum = 0;
@@ -39,22 +61,21 @@ public class LoveCalculator {
 		return result;
 	}
 	
-	public static SeperatedLoveObject Mix(SeperatedLoveObject uso1, SeperatedLoveObject uso2) {
-		ArrayList<LoveObject> usoOneArr = uso1.getSeperated();
-		ArrayList<LoveObject> usoTwoArr = uso2.getSeperated();
+	private static SeperatedLoveObject Mix(SeperatedLoveObject uso) {
+		ArrayList<LoveObject> usoArr = uso.getSeperated();
 		SeperatedLoveObject result = new SeperatedLoveObject();
 		ArrayList<LoveObject> resultArr = result.getSeperated();
+		int count = getSepCount();		
+		int usoCount = usoArr.size();
 		
-		int smallsize = usoOneArr.size() > usoTwoArr.size() ? usoTwoArr.size() : usoOneArr.size();
-		ArrayList<LoveObject> largeArr = usoOneArr.size() > usoTwoArr.size() ? usoOneArr : usoTwoArr;
-				
-		for (int i=0;i<smallsize;i++) {
-			resultArr.add(UndefinedOperate(usoOneArr.get(i), usoTwoArr.get(i)));
+		if (usoCount > 0) {
+			for (int i=0;i<count;i++) {
+				int idxOne = getSepCount()%usoCount;
+				int idxTwo = getSepCount()%usoCount;			
+				resultArr.add(UndefinedOperate(usoArr.get(idxOne), usoArr.get(idxTwo)));
+			}
 		}
 		
-		for (int i=smallsize;i<largeArr.size();i++) {
-			resultArr.add(largeArr.get(i));
-		}
 				
 		return result;
 	}
@@ -67,9 +88,22 @@ public class LoveCalculator {
 		return result;
 	}
 	
+	private static int getSepCount() {
+		int count = 0;
+		
+		while(true) {
+			count = rand.nextInt();
+			
+			if (count >= 2) {
+				break;
+			}
+		}
+		
+		return count%MAX_COUNT_SIZE;
+	}
+	
 	private static double randCalculate(double opernd1, double opernd2) {
 		double result = 0;		
-		updateRandomSeed();		
 		int operator = (int)(rand.nextLong() % 4);
 		
 		switch (operator) {
