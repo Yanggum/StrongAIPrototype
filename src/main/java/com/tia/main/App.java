@@ -18,10 +18,16 @@ public class App
     public static void main( String[] args )
     {        
     	Random rand = new Random();
-    	for (int i=0;i<10;i++) {
-//        	System.out.println(LoveCalculator.run());        	        	
-//    		System.out.println(rand.nextInt());
-    		System.out.println(System.currentTimeMillis());
+    	
+    	long timeBuffer = 0;
+    	
+    	while(true) {    		
+//    		timeBuffer = System.currentTimeMillis();
+    		
+    		if (timeBuffer != System.currentTimeMillis()) {    		
+    			System.out.println(LoveCalculator.run());
+    			timeBuffer = System.currentTimeMillis();
+    		}
     	}
 	}
     
